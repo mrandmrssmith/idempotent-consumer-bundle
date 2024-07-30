@@ -1,0 +1,6 @@
+services:
+    MrAndMrsSmith\IdempotentConsumerBundle\Resolver\KeyResolverRegister:
+        autoconfigure: true
+        public: true
+        arguments:
+            $keyResolvers: !tagged_iterator idempotent.key_resolver

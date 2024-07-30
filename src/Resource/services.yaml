@@ -1,0 +1,24 @@
+services:
+    MrAndMrsSmith\IdempotentConsumerBundle\:
+        resource: '../'
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+        MrAndMrsSmith\IdempotentConsumerBundle\Resolver\IdempotentKeyResolver:
+            public: true
+            tags: [ 'idempotent.key_resolver' ]
+
+    MrAndMrsSmith\IdempotentConsumerBundle\Checker\CheckMessageCanBeProcessed:
+        class: MrAndMrsSmith\IdempotentConsumerBundle\Checker\CheckMessageCanBeProcessed
+        autoconfigure: true
+        autowire: true
+        public: true
+        arguments:
+            $idempotentKeyResolversRegister: '@MrAndMrsSmith\IdempotentConsumerBundle\Resolver\KeyResolverRegister'
+
+    MrAndMrsSmith\IdempotentConsumerBundle\Finalizer\MessageFinalizer:
+        class: MrAndMrsSmith\IdempotentConsumerBundle\Finalizer\MessageFinalizer
+        autoconfigure: true
+        autowire: true
+        public: true
