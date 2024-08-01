@@ -6,16 +6,13 @@
     "require": {
         "php": ">=7.2",
         "ext-json": "*",
-        "symfony/messenger": ">=3.4",
-        "symfony/serializer": ">=3.4",
-        "symfony/property-access": ">=3.4"
+        "symfony/symfony": ">=3.4"
     },
     "authors": [
         {
             "name": "Michal Boryczko",
             "email": "michal.boryczko@smithhotels.com"
-        },
-
+        }
     ],
     "autoload": {
         "psr-4": {
