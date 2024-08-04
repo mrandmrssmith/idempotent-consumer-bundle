@@ -12,10 +12,19 @@ use MrAndMrsSmith\IdempotentConsumerBundle\Resolver\KeyResolverRegister;
 
 class MessageFinalizer
 {
+    /**
+     * @var MessageStatusUpdater
+     */
     private $messageUpdater;
 
+    /**
+     * @var KeyResolverRegister
+     */
     private $keyResolverRegister;
 
+    /**
+     * @var MessageStatusRetriever
+     */
     private $messageStatusRetriever;
 
     public function __construct(

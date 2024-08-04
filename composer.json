@@ -6,7 +6,8 @@
     "require": {
         "php": ">=7.2",
         "ext-json": "*",
-        "symfony/symfony": ">=3.4"
+        "symfony/dependency-injection": ">=3.4",
+        "symfony/http-kernel": ">=3.4"
     },
     "authors": [
         {
@@ -22,7 +23,7 @@
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require-dev": {
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-phpunit": "^1.3",

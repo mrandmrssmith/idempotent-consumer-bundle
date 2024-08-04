@@ -11,12 +11,24 @@ use MrAndMrsSmith\IdempotentConsumerBundle\Resolver\KeyResolverRegister;
 
 class CheckMessageCanBeProcessed
 {
+    /**
+     * @var KeyResolverRegister
+     */
     private $idempotentKeyResolversRegister;
 
+    /**
+     * @var MessageStatusRetriever
+     */
     private $messageStatusRetriever;
 
+    /**
+     * @var MessageStatusPersister
+     */
     private $messageStatusPersister;
 
+    /**
+     * @var MessageStatusUpdater
+     */
     private $messageStatusUpdater;
 
     public function __construct(

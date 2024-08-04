@@ -9,10 +9,19 @@ class MessageStatus
     private const STATUS_NEW = 'NEW';
     private const STATUS_FAILED = 'FAILED';
 
+    /**
+     * @var string
+     */
     private $status;
 
+    /**
+     * @var string
+     */
     private $messageIdempotentKey;
 
+    /**
+     * @var string
+     */
     private $messageName;
 
     public function __construct(
@@ -52,17 +61,17 @@ class MessageStatus
         return $this->status === self::STATUS_NEW;
     }
 
-    public function fail()
+    public function fail(): void
     {
         $this->status = self::STATUS_FAILED;
     }
 
-    public function finish()
+    public function finish(): void
     {
         $this->status = self::STATUS_FINISHED;
     }
 
-    public function start()
+    public function start(): void
     {
         $this->status = self::STATUS_IN_PROGRESS;
     }

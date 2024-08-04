@@ -12,6 +12,9 @@ class KeyResolverRegister
      */
     private $keyResolvers;
 
+    /**
+     * @param IdempotentKeyResolver[] $keyResolvers
+     */
     public function __construct(iterable $keyResolvers)
     {
         $this->keyResolvers = $keyResolvers;
