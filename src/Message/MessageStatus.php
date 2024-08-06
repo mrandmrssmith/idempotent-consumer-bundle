@@ -9,19 +9,13 @@ class MessageStatus
     private const STATUS_NEW = 'NEW';
     private const STATUS_FAILED = 'FAILED';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $status;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $messageIdempotentKey;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $messageName;
 
     public function __construct(

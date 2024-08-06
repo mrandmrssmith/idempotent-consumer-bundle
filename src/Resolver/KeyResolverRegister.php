@@ -7,22 +7,16 @@ use MrAndMrsSmith\IdempotentConsumerBundle\Message\IncomingMessage;
 
 class KeyResolverRegister
 {
-    /**
-     * @var IdempotentKeyResolver[]
-     */
+    /** @var IdempotentKeyResolver[] */
     private $keyResolvers;
 
-    /**
-     * @param IdempotentKeyResolver[] $keyResolvers
-     */
+    /** @param IdempotentKeyResolver[] $keyResolvers */
     public function __construct(iterable $keyResolvers)
     {
         $this->keyResolvers = $keyResolvers;
     }
 
-    /**
-     * @throws KeyResolverNotFoundException
-     */
+    /** @throws KeyResolverNotFoundException */
     public function getResolver(IncomingMessage $message): IdempotentKeyResolver
     {
         foreach ($this->keyResolvers as $resolver) {

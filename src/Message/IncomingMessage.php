@@ -4,19 +4,13 @@ namespace MrAndMrsSmith\IdempotentConsumerBundle\Message;
 
 class IncomingMessage
 {
-    /**
-     * @var mixed[]
-     */
+    /** @var mixed[] */
     private $payload;
 
-    /**
-     * @var mixed[]
-     */
+    /** @var mixed[] */
     private $headers;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
 
     /**
@@ -33,17 +27,13 @@ class IncomingMessage
         $this->name = $name;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getPayload(): array
     {
         return $this->payload;
     }
 
-    /**
-     * @return mixed[]
-     */
+    /** @return mixed[] */
     public function getHeaders(): array
     {
         return $this->headers;

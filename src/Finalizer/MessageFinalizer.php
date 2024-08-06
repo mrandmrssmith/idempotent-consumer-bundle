@@ -12,19 +12,13 @@ use MrAndMrsSmith\IdempotentConsumerBundle\Resolver\KeyResolverRegister;
 
 class MessageFinalizer
 {
-    /**
-     * @var MessageStatusUpdater
-     */
+    /** @var MessageStatusUpdater */
     private $messageUpdater;
 
-    /**
-     * @var KeyResolverRegister
-     */
+    /** @var KeyResolverRegister */
     private $keyResolverRegister;
 
-    /**
-     * @var MessageStatusRetriever
-     */
+    /** @var MessageStatusRetriever */
     private $messageStatusRetriever;
 
     public function __construct(
@@ -37,9 +31,7 @@ class MessageFinalizer
         $this->messageStatusRetriever = $messageStatusRetriever;
     }
 
-    /**
-     * @throws MessageStatusDoesNotExistException|KeyResolverNotFoundException
-     */
+    /** @throws MessageStatusDoesNotExistException|KeyResolverNotFoundException */
     public function finalizeSuccess(IncomingMessage $incomingMessage): void
     {
         $messageStatus = $this->getMessageStatusFromIncomingMessage($incomingMessage);
@@ -48,9 +40,7 @@ class MessageFinalizer
         $this->messageUpdater->update($messageStatus);
     }
 
-    /**
-     * @throws MessageStatusDoesNotExistException|KeyResolverNotFoundException
-     */
+    /** @throws MessageStatusDoesNotExistException|KeyResolverNotFoundException */
     public function finalizeFailure(IncomingMessage $incomingMessage): void
     {
         $messageStatus = $this->getMessageStatusFromIncomingMessage($incomingMessage);
@@ -59,9 +49,7 @@ class MessageFinalizer
         $this->messageUpdater->update($messageStatus);
     }
 
-    /**
-     * @throws KeyResolverNotFoundException|MessageStatusDoesNotExistException
-     */
+    /** @throws KeyResolverNotFoundException|MessageStatusDoesNotExistException */
     private function getMessageStatusFromIncomingMessage(IncomingMessage $message): MessageStatus
     {
         $key = $this->keyResolverRegister->getResolver($message)->resolveKey($message);
