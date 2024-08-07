@@ -44,9 +44,12 @@ class CheckMessageCanBeProcessed
             $this->messageStatusPersister->persist($messageStatus);
         }
         $statusAllowProcessing = $messageStatus->statusAllowProcessing();
+        if ($statusAllowProcessing === false) {
+            return false;
+        }
         $messageStatus->start();
         $this->messageStatusUpdater->update($messageStatus);
 
-        return $statusAllowProcessing;
+        return true;
     }
 }

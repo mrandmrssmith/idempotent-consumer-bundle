@@ -8,6 +8,8 @@ class MessageStatus
     private const STATUS_IN_PROGRESS = 'IN_PROGRESS';
     private const STATUS_NEW = 'NEW';
     private const STATUS_FAILED = 'FAILED';
+    private const STATUS_RETRY = 'RETRY';
+
 
     /** @var string */
     private $status;
@@ -52,7 +54,7 @@ class MessageStatus
 
     public function statusAllowProcessing(): bool
     {
-        return $this->status === self::STATUS_NEW;
+        return in_array($this->status, [self::STATUS_NEW, self::STATUS_RETRY]);
     }
 
     public function fail(): void
@@ -68,5 +70,10 @@ class MessageStatus
     public function start(): void
     {
         $this->status = self::STATUS_IN_PROGRESS;
+    }
+
+    public function markAsRetry(): void
+    {
+        $this->status = self::STATUS_RETRY;
     }
 }

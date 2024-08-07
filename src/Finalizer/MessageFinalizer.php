@@ -49,6 +49,14 @@ class MessageFinalizer
         $this->messageUpdater->update($messageStatus);
     }
 
+    public function markAsRetry(IncomingMessage $incomingMessage): void
+    {
+        $messageStatus = $this->getMessageStatusFromIncomingMessage($incomingMessage);
+        $messageStatus->markAsRetry();
+
+        $this->messageUpdater->update($messageStatus);
+    }
+
     /** @throws KeyResolverNotFoundException|MessageStatusDoesNotExistException */
     private function getMessageStatusFromIncomingMessage(IncomingMessage $message): MessageStatus
     {
