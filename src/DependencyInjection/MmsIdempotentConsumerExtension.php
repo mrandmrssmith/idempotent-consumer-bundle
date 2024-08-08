@@ -24,7 +24,7 @@ final class MmsIdempotentConsumerExtension extends Extension
         }
 
         $defaultFailedMessageProcessVoterDefinition = $container->getDefinition(
-            'mms.idempotent_consumer.process_failed_message_voter.default'
+            'mms.idempotent_consumer.process_failed_message_voter'
         );
         $defaultFailedMessageProcessVoterDefinition
             ->setArgument(

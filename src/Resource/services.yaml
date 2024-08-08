@@ -23,9 +23,8 @@ services:
         autowire: true
         public: true
 
-    MrAndMrsSmith\IdempotentConsumerBundle\ProcessFailedMessageVoter\DefaultProcessFailedMessageVoter:
+    mms.idempotent_consumer.process_failed_message_voter:
         class: MrAndMrsSmith\IdempotentConsumerBundle\ProcessFailedMessageVoter\DefaultProcessFailedMessageVoter
-        alias: mms.idempotent_consumer.process_failed_message_voter
         autoconfigure: true
         autowire: true
         public: true
