@@ -22,5 +22,20 @@ final class MmsIdempotentConsumerExtension extends Extension
         } else {
             $loader->load('services_resolver_register.yaml');
         }
+
+        $defaultFailedMessageProcessVoterDefinition = $container->getDefinition(
+            'mms.idempotent_consumer.process_failed_message_voter.default'
+        );
+        $defaultFailedMessageProcessVoterDefinition
+            ->setArgument(
+                '$wantToProcessFailedMessage',
+                $config['process_failed_messages']
+            );
+        if ($config['custom_process_failed_messages_voter']) {
+            $container->setAlias(
+                'mms.idempotent_consumer.process_failed_message_voter',
+                $config['custom_process_failed_messages_voter']
+            );
+        }
     }
 }

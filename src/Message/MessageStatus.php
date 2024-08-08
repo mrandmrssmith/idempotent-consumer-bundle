@@ -76,4 +76,9 @@ class MessageStatus
     {
         $this->status = self::STATUS_RETRY;
     }
+
+    public function isFailed(): bool
+    {
+        return $this->status === self::STATUS_FAILED;
+    }
 }

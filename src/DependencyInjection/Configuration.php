@@ -10,6 +10,19 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        return new TreeBuilder('mms_idempotent_consumer');
+        $treeBuilder = new TreeBuilder('mms_idempotent_consumer');
+        $rootNode = $treeBuilder->getRootNode();
+
+        $rootNode
+            ->children()
+            ->booleanNode('process_failed_messages')
+                ->defaultValue(false)
+                ->end()
+            ->scalarNode('custom_process_failed_messages_voter')
+                ->defaultNull()
+                ->end()
+        ->end();
+
+        return $treeBuilder;
     }
 }
