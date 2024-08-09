@@ -24,4 +24,22 @@ composer require mrandmrssmith/idempotent-consumer-bundle
    - it works as strategy pattern. You have to register your resolver and add tag `idempotent.key_resolver`
 4. Checker and Finalizer
    - you have to use these services with your consumer checker on entry of message and finalizer after message processing
-   - you can use package for symfony messenger `mrandmrssmith/idempotent-symfony-messenger-consumer-bundle` 
+   - you can use package for symfony messenger `mrandmrssmith/idempotent-symfony-messenger-consumer-bundle`
+5. Settings
+   - By default failed messages which have status failed are skipped but it may be possible that
+   you may want to try handle again message with status failed so there are 2 options for this
+   - first option is in your configuration for this bundle set `process_failed_messages` to true
+   ```yaml
+      mms_idempotent_consumer:
+        process_failed_messages: true
+   ```
+   that will change default value (false) of `$wantToProcessFailedMessage` in `DefaultProcessFailedMessageVoter` to value which you set here
+   - second option is implement own voter - that may be solution when you want to implement own logic which tell if we should handle this message
+   again or not for that you should
+   ```yaml
+      mms_idempotent_consumer:
+        custom_process_failed_messages_voter: id_of_your_voter_service
+   ```
+   you can replace default voter to your own implementation of `ProcessFailedMessageVoter` what's provide you
+   full control over processing failed messages.
+
