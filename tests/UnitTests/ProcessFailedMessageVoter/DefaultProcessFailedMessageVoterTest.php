@@ -18,7 +18,6 @@ class DefaultProcessFailedMessageVoterTest extends TestCase
         );
     }
 
-
     public function testVoteWhenFalse(): void
     {
         $voter = new DefaultProcessFailedMessageVoter(false);
