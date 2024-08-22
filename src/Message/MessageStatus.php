@@ -10,7 +10,6 @@ class MessageStatus
     private const STATUS_FAILED = 'FAILED';
     private const STATUS_RETRY = 'RETRY';
 
-
     /** @var string */
     private $status;
 
