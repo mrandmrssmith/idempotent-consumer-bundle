@@ -2,10 +2,10 @@ parameters:
     level: 6
     paths:
         - ./src
+        - ./tests
     excludePaths:
         - ./vendor/*
         - ./src/DependencyInjection/*
-
 includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon

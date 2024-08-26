@@ -18,7 +18,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "MrAndMrsSmith\\IdempotentConsumerBundle\\": "/src"
+            "MrAndMrsSmith\\IdempotentConsumerBundle\\": "./src",
+            "Tests\\UnitTests\\" : "./tests/UnitTests"
         }
     },
     "config": {
