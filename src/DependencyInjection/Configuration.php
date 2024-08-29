@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MrAndMrsSmith\IdempotentConsumerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -10,8 +9,13 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('mms_idempotent_consumer');
-        $rootNode = $treeBuilder->getRootNode();
+        if (method_exists(TreeBuilder::class, 'getRootNode')) {
+            $treeBuilder = new TreeBuilder('mms_idempotent_consumer');
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            $treeBuilder = new TreeBuilder();
+            $rootNode = $treeBuilder->root('mms_idempotent_consumer');
+        }
 
         $rootNode
             ->children()
@@ -21,7 +25,7 @@ final class Configuration implements ConfigurationInterface
             ->scalarNode('custom_process_failed_messages_voter')
                 ->defaultNull()
                 ->end()
-        ->end();
+            ->end();
 
         return $treeBuilder;
     }

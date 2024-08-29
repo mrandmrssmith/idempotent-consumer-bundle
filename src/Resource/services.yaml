@@ -1,6 +1,7 @@
 services:
     MrAndMrsSmith\IdempotentConsumerBundle\:
         resource: '../'
+        exclude: '../{DependencyInjection,Exception,Message,Resource,ProcessFailedMessageVoter}'
         autowire: true
         autoconfigure: true
 
@@ -17,6 +18,7 @@ services:
         arguments:
             $idempotentKeyResolversRegister: '@MrAndMrsSmith\IdempotentConsumerBundle\Resolver\KeyResolverRegister'
             $processFailedMessageVoter: '@mms.idempotent_consumer.process_failed_message_voter'
+
     MrAndMrsSmith\IdempotentConsumerBundle\Finalizer\MessageFinalizer:
         class: MrAndMrsSmith\IdempotentConsumerBundle\Finalizer\MessageFinalizer
         autoconfigure: true
