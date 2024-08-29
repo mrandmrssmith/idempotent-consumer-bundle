@@ -21,11 +21,11 @@ final class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
             ->booleanNode('process_failed_messages')
-            ->defaultValue(false)
-            ->end()
+                ->defaultValue(false)
+                ->end()
             ->scalarNode('custom_process_failed_messages_voter')
-            ->defaultNull()
-            ->end()
+                ->defaultNull()
+                ->end()
             ->end();
 
         return $treeBuilder;
