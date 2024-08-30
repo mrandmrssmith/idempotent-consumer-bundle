@@ -5,12 +5,10 @@ on:
     branches:
       - main
       - develop
-      - feature/sonarqube
   pull_request:
     branches:
       - main
       - develop
-      - feature/sonarqube
 
 jobs:
   sonarqube-check-idempotent:
@@ -30,8 +28,9 @@ jobs:
             -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
             -Dsonar.login=${{ env.SONAR_TOKEN }}
             -Dsonar.ssl.accept.all=true
+            -Dsonar.qualitygate.wait=false
         continue-on-error: true
-
+        
   sonarqube-vulnerability-report-idempotent:
     runs-on: ubuntu-latest
     env:
