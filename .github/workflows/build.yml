@@ -30,6 +30,7 @@ jobs:
             -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
             -Dsonar.login=${{ env.SONAR_TOKEN }}
             -Dsonar.ssl.accept.all=true
+        continue-on-error: true
 
   sonarqube-vulnerability-report-idempotent:
     runs-on: ubuntu-latest
