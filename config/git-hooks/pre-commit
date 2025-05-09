@@ -3,7 +3,7 @@ echo "Running pre commit checks..."
 
 IMAGE_NAME=smithsfjs-php-cli
 
-make build72
+make build74
 
 make composer-install
 
@@ -117,6 +117,18 @@ if [ $? != 0 ]
 then
     echo "--------------------------WARNING----------------------------------------------"
     echo "Committed code breaks 'phpunit' tests, please fix them!"
+    echo "-------------------------------------------------------------------------------"
+    exit 1
+fi
+
+echo "Running PHP74 Compatibility..."
+echo
+make phpcompat-74-src
+
+if [ $? != 0 ]
+then
+    echo "--------------------------WARNING----------------------------------------------"
+    echo "Committed code breaks 'phpcompat' test, please fix them!"
     echo "-------------------------------------------------------------------------------"
     exit 1
 fi

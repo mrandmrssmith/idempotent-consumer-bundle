@@ -43,3 +43,51 @@ composer require mrandmrssmith/idempotent-consumer-bundle
    you can replace default voter to your own implementation of `ProcessFailedMessageVoter` what's provide you
    full control over processing failed messages.
 
+---
+
+## Development
+
+Dockerfile added for testing of local build...
+
+To build the image see the `Makefile` for all available commands.
+
+```shell
+make build74
+```
+
+To run a composer install use;
+
+```shell
+make composer-install
+```
+
+---
+
+### Unit Tests
+
+To run them.
+
+Run composer install first as above.
+
+
+```shell
+make tests-php7
+```
+
+### PHP Compatibility Testing
+
+https://github.com/PHPCompatibility/PHPCompatibility
+
+Run composer install first as above.
+
+#### Project Files PHP 7.4
+
+```shell
+make phpcompat-74-src
+```
+
+#### Vendor Files PHP 7.4
+
+```shell
+make phpcompat-74-vendor
+```

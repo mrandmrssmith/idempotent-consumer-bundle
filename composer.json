@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4",
         "ext-json": "*",
         "symfony/dependency-injection": ">=3.4",
         "symfony/http-kernel": ">=3.4",
@@ -27,11 +27,13 @@
     },
     "minimum-stability": "dev",
     "require-dev": {
+        "phpcompatibility/php-compatibility": "^9.3",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-phpunit": "^1.3",
         "phpunit/phpunit": ">=8.5",
         "roave/security-advisories": "dev-master",
         "symplify/easy-coding-standard": "^12.1",
         "vimeo/psalm": "^4.30||^5.22"
-    }
+    },
+    "prefer-stable": true
 }

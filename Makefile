@@ -1,11 +1,7 @@
-.PHONY: build72 build74 build80 build81 build82 build83 git-hooks composer-install composer-update shell tests-php7 tests-php8 phpstan psalm ecs-check ecs-fix code-quality coverage-php7 coverage-php8 pre-commit
+.PHONY: build74 build80 build81 build82 build83 git-hooks composer-install composer-update shell tests-php7 tests-php8 phpstan psalm ecs-check ecs-fix code-quality coverage-php7 coverage-php8 phpcompat-config phpcompat-74 phpcompat-74-vendor pre-commit
 IMAGE_NAME=smithsfjs-php-cli
 PHPUNIT_PATH=./vendor/bin/phpunit
 DOCKER_RUN=docker run  --volume $$(pwd):/var/www/html $(IMAGE_NAME)
-
-build72:
-	@docker build . -f Dockerfile -t $(IMAGE_NAME):latest --build-arg BASE_IMAGE=php:7.2-cli-alpine3.12 --build-arg XDEBUG_VERSION=3.1.6
-	@make git-hooks
 
 build74:
 	@docker build . -f Dockerfile -t $(IMAGE_NAME):latest --build-arg BASE_IMAGE=php:7.4-cli-alpine3.16 --build-arg XDEBUG_VERSION=3.1.6
@@ -71,6 +67,19 @@ coverage-php7:
 coverage-php8: DOCKER_RUN=docker run  -e XDEBUG_MODE=coverage --volume $$(pwd):/var/www/html $(IMAGE_NAME)
 coverage-php8:
 	@$(DOCKER_RUN) XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit-11.xml.dist --coverage-html ./coverage
+
+phpcompat-config:
+	@$(DOCKER_RUN) vendor/bin/phpcs --config-set installed_paths vendor/phpcompatibility/php-compatibility
+	@mkdir -p codesniffer
+
+phpcompat-74-src:
+	@make phpcompat-config
+	@$(DOCKER_RUN) php -d memory_limit=2G ./vendor/bin/phpcs -p . --ignore=./vendor/* --standard=PHPCompatibility --runtime-set testVersion 7.4 --extensions=php,inc,lib --report-full=./codesniffer/report
+
+phpcompat-74-vendor:
+	@make phpcompat-config
+	@$(DOCKER_RUN) php -d memory_limit=2G ./vendor/bin/phpcs -p ./vendor --ignore=./vendor/squizlabs/* --ignore=./vendor/phpcompatibility/* --standard=PHPCompatibility --runtime-set testVersion 7.4 --extensions=php,inc,lib --report-full=./codesniffer/report-vendor
+
 
 pre-commit:
 	config/git-hooks/pre-commit

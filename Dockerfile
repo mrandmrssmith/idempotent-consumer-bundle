@@ -1,6 +1,8 @@
-ARG BASE_IMAGE=php:7.2-cli-alpine3.12
+ARG BASE_IMAGE=php:7.4-cli-alpine3.16
 
 FROM ${BASE_IMAGE}
+
+ARG COMPOSER_VERSION="2.2.9"
 
 RUN mkdir -p /var/www/html
 
@@ -19,6 +21,7 @@ RUN apk update && apk add --no-cache zip bash curl git libxml2-dev linux-headers
 
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
+    && composer self-update ${COMPOSER_VERSION} \
     && composer config --global repo.packagist composer https://packagist.org
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
