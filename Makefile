@@ -1,4 +1,4 @@
-.PHONY: build74 build80 build81 build82 build83 git-hooks composer-install composer-update shell tests-php7 tests-php8 phpstan psalm ecs-check ecs-fix code-quality coverage-php7 coverage-php8 phpcompat-config phpcompat-74 phpcompat-74-vendor pre-commit
+.PHONY: build74 build80 build81 build82 build83 git-hooks composer-install composer-update shell tests-php7 tests-php8 phpstan psalm ecs-check ecs-fix code-quality coverage-php7 coverage-php8 phpcompat-config phpcompat-74 phpcompat-74-vendor phpcompat-83-src pre-commit
 IMAGE_NAME=smithsfjs-php-cli
 PHPUNIT_PATH=./vendor/bin/phpunit
 DOCKER_RUN=docker run  --volume $$(pwd):/var/www/html $(IMAGE_NAME)
@@ -79,6 +79,10 @@ phpcompat-74-src:
 phpcompat-74-vendor:
 	@make phpcompat-config
 	@$(DOCKER_RUN) php -d memory_limit=2G ./vendor/bin/phpcs -p ./vendor --ignore=./vendor/squizlabs/* --ignore=./vendor/phpcompatibility/* --standard=PHPCompatibility --runtime-set testVersion 7.4 --extensions=php,inc,lib --report-full=./codesniffer/report-vendor
+
+phpcompat-83-src:
+	@make phpcompat-config
+	@$(DOCKER_RUN) php -d memory_limit=2G ./vendor/bin/phpcs -p . --ignore=./vendor/* --standard=PHPCompatibility --runtime-set testVersion 7.4-8.3 --extensions=php,inc,lib --report-full=./codesniffer/report-83
 
 
 pre-commit:
