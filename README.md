@@ -3,6 +3,15 @@
 This is core bundle for idempotent consumer. It provides basic functionality 
 to make your consumer idempotent.
 
+## Requirements
+
+| PHP          | Symfony                      |
+|--------------|------------------------------|
+| 7.4, 8.0–8.3 | 3.4, 4.4, 5.4, 6.4, 7.4      |
+
+Tested in CI with: PHP 7.4 + Symfony 3.4 (lowest), PHP 7.4 + Symfony 5.4,
+PHP 8.1 + Symfony 6.4 and PHP 8.3 + Symfony 7.4.
+
 ## Installation
 
 Add this package to your project
@@ -74,6 +83,21 @@ Run composer install first as above.
 make tests-php7
 ```
 
+On a PHP 8 image (e.g. `make build83`), use the PHPUnit 10/11 configuration:
+
+```shell
+make tests-php8
+```
+
+### Security advisories
+
+`roave/security-advisories` is not used, as it cannot be installed on PHP 7.4.
+Check dependencies for known vulnerabilities with Composer 2.4+ instead:
+
+```shell
+composer audit
+```
+
 ### PHP Compatibility Testing
 
 https://github.com/PHPCompatibility/PHPCompatibility
@@ -90,4 +114,10 @@ make phpcompat-74-src
 
 ```shell
 make phpcompat-74-vendor
+```
+
+#### Project Files PHP 7.4 - 8.3
+
+```shell
+make phpcompat-83-src
 ```
